@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import Header from "../others/Header";
 import TaskListNumbers from "../others/TaskListNumbers";
 import TaskList from "../TaskList/TaskList";
+import { AuthContext } from "../../context/AuthContext";
 
 const EmployeeDashboard = () => {
   // Mock data (later this comes from API / context)
+  const {user} = useContext(AuthContext);
   const data = {
     taskCounts: {
       newTask: 5,
@@ -14,20 +16,18 @@ const EmployeeDashboard = () => {
     },
   };
 
-  const handleLogout = () => {
-    console.log("Employee logged out");
-  };
+  
 
   return (
     <div className="min-h-screen bg-slate-950 px-6 py-4 space-y-10">
       
       {/* Header */}
-      <Header username="Ishan" onLogout={handleLogout} />
+      <Header username={user.email}  />
 
       {/* Stats */}
       <TaskListNumbers data={data} />
 
-      <TaskList/>
+      <TaskList tasks ={user.tasks}/>
 
     </div>
   );

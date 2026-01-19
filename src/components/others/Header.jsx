@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../../context/AuthContext";
 
-const Header = ({ username = "Username", onLogout }) => {
+const Header = ({ username = "Username",  }) => {
     const [visible, setVisible] = useState(false);
+    const { logout } = useContext(AuthContext)
 
     useEffect(() => {
         setVisible(true);
     }, []);
 
-    // Get initials (e.g. "Ishan Bhardwaj" → "IB")
+
     const initials = username
         .split(" ")
         .map(word => word[0])
@@ -43,7 +45,7 @@ const Header = ({ username = "Username", onLogout }) => {
 
                 {/* Logout */}
                 <button
-                    onClick={onLogout}
+                    onClick={logout}
                     className="text-lg font-medium text-slate-400
                      hover:text-red-400 transition"
                 >

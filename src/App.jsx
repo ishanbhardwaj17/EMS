@@ -1,16 +1,30 @@
-import React from 'react'
-import Login from './components/Auth/Login'
-import AdminDashboard from './components/Dashboard/AdminDashboard'
-import EmployeeDashboard from './components/Dashboard/EmployeeDashboard'
+import React, { useContext, useEffect } from "react";
+import Login from "./components/Auth/Login";
+import AdminDashboard from "./components/Dashboard/AdminDashboard";
+import EmployeeDashboard from "./components/Dashboard/EmployeeDashboard";
+import { AuthContext } from "./context/AuthContext";
 
 const App = () => {
-  return (
-    <>
-    {/* <Login/> */}
-    {/* <AdminDashboard/> */}
-    <EmployeeDashboard/>
-    </>
-  )
-}
+  const { user,login } = useContext(AuthContext);
 
-export default App
+  useEffect(() => {
+    // login("employee1@example.com","123")
+    console.log("AUTH STATE:", user);
+  }, []);
+
+  if (!user) {
+    return <Login />;
+  }
+
+  if (user.role === "admin") {
+    return <AdminDashboard />;
+  }
+
+  if (user.role === "employee") {
+    return <EmployeeDashboard />;
+  }
+
+  return null;
+};
+
+export default App;

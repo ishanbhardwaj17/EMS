@@ -6,27 +6,39 @@ const priorityStyles = {
   Low: "bg-green-500/10 text-green-400",
 };
 
-const TaskList = () => {
-  const tasks = [
-    {
-      title: "Make a YouTube video",
-      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-      priority: "High",
-      date: "20 Feb 2024",
-    },
-    {
-      title: "Fix dashboard UI",
-      description: "Improve spacing and typography for better UX.",
-      priority: "Medium",
-      date: "22 Feb 2024",
-    },
-    {
-      title: "Update task API",
-      description: "Refactor backend endpoints and validations.",
-      priority: "Low",
-      date: "25 Feb 2024",
-    },
-  ];
+const TaskList = ({tasks}) => {
+  // const tasks = [
+  //   {
+  //     title: "Make a YouTube video",
+  //     description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+  //     priority: "High",
+  //     date: "20 Feb 2024",
+  //   },
+  //   {
+  //     title: "Make a YouTube video",
+  //     description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima ea vero natus aperiam, nulla fugit, alias nemo rerum veniam sint repellat expedita at accusantium odit quod consectetur, ipsam amet voluptatibus!,",
+  //     priority: "High",
+  //     date: "20 Feb 2024",
+  //   },
+  //   {
+  //     title: "Make a YouTube video",
+  //     description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+  //     priority: "High",
+  //     date: "20 Feb 2024",
+  //   },
+  //   {
+  //     title: "Fix dashboard UI",
+  //     description: "Improve spacing and typography for better UX.",
+  //     priority: "Medium",
+  //     date: "22 Feb 2024",
+  //   },
+  //   {
+  //     title: "Update task API",
+  //     description: "Refactor backend endpoints and validations.",
+  //     priority: "Low",
+  //     date: "25 Feb 2024",
+  //   },
+  // ];
 
   return (
     <section
@@ -37,8 +49,9 @@ const TaskList = () => {
       {tasks.map((task, index) => (
         <div
           key={index}
-          className="min-w-[320px] shrink-0
+          className="w-78 shrink-0
                      rounded-xl
+                     h-70
                      bg-slate-900
                      border border-slate-800
                      p-6
