@@ -198,8 +198,26 @@ export const setLocalStorage = () => {
     localStorage.setItem('admin', JSON.stringify(admin));
 }
 export const getLocalStorage = () => {
-  const employees = JSON.parse(localStorage.getItem("employees"));
-  const admin = JSON.parse(localStorage.getItem("admin"));
+    const employees = JSON.parse(localStorage.getItem("employees"));
+    const admin = JSON.parse(localStorage.getItem("admin"));
 
-  return { employees, admin };
+    return { employees, admin };
+};
+
+export const assignTaskToEmployee = (employeeEmail, newTask) => {
+    const employees = JSON.parse(localStorage.getItem("employees"));
+
+    if (!employees) return;
+
+    const updatedEmployees = employees.map((emp) => {
+        if (emp.email === employeeEmail) {
+            return {
+                ...emp,
+                tasks: [...emp.tasks, newTask],
+            };
+        }
+        return emp;
+    });
+
+    localStorage.setItem("employees", JSON.stringify(updatedEmployees));
 };

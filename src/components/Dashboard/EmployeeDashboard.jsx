@@ -25,7 +25,7 @@ const EmployeeDashboard = () => {
       <Header username={user.email}  />
 
       {/* Stats */}
-      <TaskListNumbers data={data} />
+      <TaskListNumbers tasks={user.tasks} />
 
       <TaskList tasks ={user.tasks}/>
 
